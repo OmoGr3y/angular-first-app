@@ -19,7 +19,7 @@ import {Article} from '../../models/article';
           </button>
       </form>
         <div class="ui grid posts">
-            <app-article *ngFor="let article of articles" [article]="article"></app-article>
+            <app-article *ngFor="let article of sortedArticles()" [article]="article"></app-article>
         </div>
   `,
   styles: []
@@ -34,6 +34,10 @@ export class UserItemComponent implements OnInit {
     title.value = '';
     link.value = '';
     return false;
+  }
+
+  sortedArticles(): Article[]{
+    return this.articles.sort((a: Article, b: Article) => b.votes - a.votes);
   }
 
   constructor() {
