@@ -1,16 +1,17 @@
 import {Component, HostBinding, OnInit} from '@angular/core';
+import {Article} from '../../models/article';
 
 @Component({
   selector: 'app-article',
   template: `
       <div class="four wide column center aligned votes">
           <div class="ui statistic">
-              <div class="value">{{votes}}</div>
+              <div class="value">{{article.votes}}</div>
               <div class="label">Points</div>
           </div>
       </div>
-      <div class="twelve wide column"><a href="{{link}}" class="ui large header">
-          {{title}}
+      <div class="twelve wide column"><a href="{{article.link}}" class="ui large header">
+          {{article.title}}
       </a>
           <ul class="ui big horizontal list voters">
               <li class="item">
@@ -33,14 +34,14 @@ import {Component, HostBinding, OnInit} from '@angular/core';
 })
 export class ArticleComponent implements OnInit {
   @HostBinding('attr.class') cssClass = 'row';
-  votes: number;
-  title: string;
-  link: string;
+  article: Article;
 
   constructor() {
-    this.title = 'Angular';
-    this.link = 'http://angular.io';
-    this.votes = 10;
+    this.article = new Article(
+      'Angular',
+      'http://angular.io',
+      10
+    );
   }
 
 
@@ -48,12 +49,12 @@ export class ArticleComponent implements OnInit {
   }
 
   voteUp(): boolean {
-    this.votes += 1;
+    this.article.votes += 1;
     return  false;
   }
 
   voteDown(): boolean {
-    this.votes -= 1;
+    this.article.votes -= 1;
     return  false;
   }
 }
