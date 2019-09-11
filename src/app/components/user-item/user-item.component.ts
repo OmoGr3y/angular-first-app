@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Article} from "../../models/article";
 
 @Component({
   selector: 'app-user-item',
@@ -18,13 +19,14 @@ import {Component, OnInit} from '@angular/core';
           </button>
       </form>
         <div class="ui grid posts">
-            <app-article></app-article>
+            <app-article *ngFor="let article of articles" [article]="article"></app-article>
         </div>
   `,
   styles: []
 })
 export class UserItemComponent implements OnInit {
   name: string;
+  articles: Article[];
 
   addArticle(title: HTMLInputElement, link: HTMLInputElement): boolean {
     console.log(`Adding article title: ${title.value} and link: ${link.value}`);
@@ -33,6 +35,11 @@ export class UserItemComponent implements OnInit {
 
   constructor() {
     this.name = 'Felipe';
+    this.articles = [
+      new Article('Angular', 'http://angular.io', 3),
+      new Article('Fullstack', 'http://fullstack.io', 2),
+      new Article('Angular Homepage', 'http://angular.io', 1)
+    ];
   }
 
   ngOnInit() {
