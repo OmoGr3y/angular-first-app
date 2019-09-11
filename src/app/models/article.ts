@@ -20,9 +20,9 @@ export class Article {
   domain(): string {
     try {
       // e.g. http://foo.com/path/to/bar
-      const domainAndpath: string = this.link.split('//')[1];
+      const domainAndPath: string = this.link.split('//')[1];
       // e.g foo.com/path/to/bar
-      return  domainAndpath.split('/')[0];
+      return  domainAndPath.split('/')[0];
     } catch (e) {
       return  null;
 
